@@ -1,20 +1,20 @@
 # logic.py
-from openai import OpenAI
+import google.generativeai as genai
 import config
 
-# Создаём клиента OpenAI
-client = OpenAI(api_key=config.OPENAI_API_KEY)
+# Настраиваем API-ключ
+genai.configure(api_key=config.GEMINI_API_KEY)
 
 def ask_gpt(prompt: str) -> str:
     """
-    Отправка текста в GPT и возврат ответа
+    Отправляет сообщение в Google Gemini и возвращает ответ
     """
     try:
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",  # можно заменить на gpt-4o или gpt-3.5-turbo
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.7
-        )
-        return response.choices[0].message.content
+        # Используем модель Gemini 1.5 Flash (очень быстрая и бесплатная)
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        response = model.generate_content(prompt)
+
+        return response.text if response.text else "❌ Gemini не вернул ответ."
+
     except Exception as e:
-        return f"Ошибка при запросе к GPT: {e}"
+        return f"Ошибка при обращении к Gemini API: {e}"
