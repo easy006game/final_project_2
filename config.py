@@ -1,7 +1,12 @@
-# config.py
+# Файл: config.py
 
-# Токен Telegram-бота (из BotFather)
-TELEGRAM_TOKEN = "8197229518:AAHQRNnU6KCFOllF6HcEZs2JIJwIIJSquUQ"
+import os
+from dotenv import load_dotenv
 
-# Ключ Google Gemini (https://aistudio.google.com/app/apikey)
-GEMINI_API_KEY = "AIzaSyCBDqraYChDosBTngw1SUHfcWvrWvRBOsw"
+# Загружаем переменные из .env
+load_dotenv()
+
+# Ключи и настройки
+TELEGRAM_BOT_TOKEN ="8197229518:AAHQRNnU6KCFOllF6HcEZs2JIJwIIJSquUQ"
+GEMINI_API_KEY ="AIzaSyCBDqraYChDosBTngw1SUHfcWvrWvRBOsw"
+GEMINI_MODEL="gemini-2.5-flash"
